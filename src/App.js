@@ -18,7 +18,19 @@ function App() {
             <div className="grid grid-flow-row gap-4 lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
                 {response.results
                     ? response.results.map((planet) => (
-                          <div className="cursor-help bg-blue-400 hover:shadow-md hover:border-gray-600 border-2 border-blue-400 text-white text-center shadow-md rounded-md  py-4">{planet.name}</div>
+                          <div
+                              className="cursor-help uppercase bg-blue-400 hover:shadow-md hover:border-gray-600 border-2 border-blue-400 text-white text-center shadow-md rounded-md  py-4"
+                              title={`Rotation Period: ${planet.rotation_period}
+Orbital Period: ${planet.orbital_period}
+Diameter: ${planet.diameter}
+Climate: ${planet.climate}
+Gravity: ${planet.gravity}
+Terrain: ${planet.terrain}
+Surface Water: ${planet.surface_water}
+Population: ${planet.population}`}
+                          >
+                              {planet.name}
+                          </div>
                       ))
                     : 'loading...'}
             </div>
