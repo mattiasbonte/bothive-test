@@ -14,9 +14,9 @@ function App() {
     }, [])
 
     return (
-        <div className="max-w-7xl sm:px-6 lg:px-8 mx-auto my-5 text-center">
+        <div className="max-w-7xl sm:px-6 lg:px-8 mx-5 mx-auto my-5 text-center">
             <h1 className=" my-5 font-sans text-xl font-bold">PLANETS</h1>
-            <div className="lg:grid-cols-4 md:grid-cols-3 grid grid-flow-row grid-cols-2 gap-4">{planets ? planets.map((planet) => <Planet planet={planet} key={planet.name} />) : 'loading...'}</div>
+            <div className="lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid grid-flow-row gap-4">{planets ? planets.map((planet) => <Planet planet={planet} key={planet.name} />) : 'loading...'}</div>
         </div>
     )
 }
