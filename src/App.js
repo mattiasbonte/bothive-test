@@ -1,36 +1,25 @@
 import React, { useEffect, useState } from 'react'
+import Planet from './Planet'
 
 function App() {
-    const [response, setResponse] = useState({})
+    const [planets, setPlanets] = useState([])
 
     useEffect(() => {
-        fetch('https://swapi.dev/api/planets/')
-            .then((response) => response.json())
-            .then(setResponse)
+        const fetchData = async () => {
+            let response = await fetch('https://swapi.dev/api/planets/')
+            response = await response.json()
+            setPlanets(response.results)
+        }
+        fetchData()
     }, [])
 
-    useEffect(() => {
-        console.log(response)
-    }, [response])
-
     return (
-        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 my-5">
-            <div className="grid grid-flow-row gap-4 lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
-                {response.results
-                    ? response.results.map((planet) => (
-                          <div
-                              className="cursor-help uppercase bg-blue-400 hover:shadow-md hover:border-gray-600 border-2 border-blue-400 text-white text-center shadow-md rounded-md  py-4"
-                              title={`Rotation Period: ${planet.rotation_period}
-Orbital Period: ${planet.orbital_period}
-Diameter: ${planet.diameter}
-Climate: ${planet.climate}
-Gravity: ${planet.gravity}
-Terrain: ${planet.terrain}
-Surface Water: ${planet.surface_water}
-Population: ${planet.population}`}
-                          >
-                              {planet.name}
-                          </div>
+        <div className="max-w-7xl sm:px-6 lg:px-8 mx-auto my-5 text-center">
+            <h1 className=" my-5 font-sans text-xl font-bold">PLANETS</h1>
+            <div className="lg:grid-cols-4 md:grid-cols-3 grid grid-flow-row grid-cols-2 gap-4">
+                {planets
+                    ? planets.map((planet) => (
+                        <Planet planet={planet} key={planet.name}/>
                       ))
                     : 'loading...'}
             </div>
