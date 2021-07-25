@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Planet from './Planet'
+import Planet from './components/Planet.js'
 
 function App() {
     const [planets, setPlanets] = useState([])
